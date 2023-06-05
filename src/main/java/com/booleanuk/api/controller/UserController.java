@@ -28,10 +28,10 @@ public class UserController {
 
     record PostUser(String email, String firstName) {}
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public User create(@RequestBody PostUser request) {
-        User user = new User(request.email(), request.firstName());
-        return this.repository.save(user);
-    }
+ //   @ResponseStatus(HttpStatus.CREATED)
+  //  @PostMapping
+   // public User create(@RequestBody PostUser request) {
+   //     User user = new User(request.email(), request.firstName());
+    //    return this.repository.save(user);
+  //  }
 }
