@@ -67,7 +67,9 @@ public class User {
     }
     //endregion
 
-    //public User() {}
+
+    public User() {}
+
     public User(Integer id, String email, String firstName, String lastName, String username, String phone) {
         this.id = id;
         this.email = email;
