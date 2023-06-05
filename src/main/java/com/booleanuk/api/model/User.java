@@ -26,8 +26,12 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    public User(Integer id, String email, String firstName, String lastName, String username, String phone) {
-        this.id = id;
+    public User() {
+
+    }
+
+    public User(String email, String firstName, String lastName, String username, String phone) {
+        super();
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,19 +84,6 @@ public class User {
     }
 
     public void setPhone(String phone) { this.phone = phone; }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        User user = (User) o;
-//        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(isActive, user.isActive);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, email, firstName, isActive);
-//    }
 
     @Override
     public String toString() {
