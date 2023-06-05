@@ -1,27 +1,38 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "email")
     private String email;
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
+    private String lastName;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "isActive")
     private Boolean isActive;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
-        this.id = id;
+    public User() {
+    }
+
+    public User(String email, String firstName, String lastName, String username, String phone) {
         this.email = email;
         this.firstName = firstName;
-        this.isActive = isActive;
+        this.lastName = lastName;
+        this.username = username;
+        this.phone = phone;
     }
 
     public User(String email, String firstName) {
@@ -29,6 +40,31 @@ public class User {
         this.firstName = firstName;
         this.isActive = false;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 
     public Integer getId() {
         return id;
