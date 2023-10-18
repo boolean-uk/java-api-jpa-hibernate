@@ -1,33 +1,34 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private String email;
+    @Column(name="user_name")
+    private String userName;
+    @Column(name="first_name")
     private String firstName;
-    private Boolean isActive;
+    @Column(name="last_name")
+    private String lastName;
+    private String email;
+    private String phone;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
-        this.id = id;
-        this.email = email;
-        this.firstName = firstName;
-        this.isActive = isActive;
+    public User() {
     }
 
-    public User(String email, String firstName) {
-        this.email = email;
+    public User(Integer id, String userName, String firstName, String lastName, String email, String phone) {
+        this.id = id;
+        this.userName = userName;
         this.firstName = firstName;
-        this.isActive = false;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
     }
 
     public Integer getId() {
@@ -38,12 +39,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {
@@ -54,12 +55,28 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
@@ -67,21 +84,23 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(isActive, user.isActive);
+        return Objects.equals(id, user.id) && Objects.equals(userName, user.userName) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, isActive);
+        return Objects.hash(id, userName, firstName, lastName, email, phone);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", username='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", isActive=" + isActive +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }
