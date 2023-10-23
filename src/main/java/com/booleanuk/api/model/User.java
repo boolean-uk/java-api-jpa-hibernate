@@ -1,41 +1,53 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer userId;
 
+    @Column(name = "email")
     private String email;
-    private String firstName;
-    private Boolean isActive;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
-        this.id = id;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "user_name")
+    private String userName;
+
+    @Column(name = "phone")
+    private String phoneNumber;
+
+    public User() {
+    }
+
+    public User(String email, String firstName, String lastName, String userName, String phoneNumber) {
         this.email = email;
         this.firstName = firstName;
-        this.isActive = isActive;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
     }
 
     public User(String email, String firstName) {
         this.email = email;
         this.firstName = firstName;
-        this.isActive = false;
     }
 
     public Integer getId() {
-        return id;
+        return userId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.userId = id;
     }
 
     public String getEmail() {
@@ -54,34 +66,45 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(isActive, user.isActive);
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, isActive);
+        return Objects.hash(userId, email, firstName, lastName, userName, phoneNumber
+        );
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", isActive=" + isActive +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
