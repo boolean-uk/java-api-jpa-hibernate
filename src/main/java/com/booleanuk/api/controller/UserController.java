@@ -31,7 +31,19 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createEmployee(@RequestBody User user) {
+    public ResponseEntity<User> create(@RequestBody User user) {
         return new ResponseEntity<>(this.repository.save(user), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable(name = "id") int id, @RequestBody User user) {
+        User userToUpdate = this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
+
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setPhone(user.getPhone());
+        userToUpdate.setUserName(user.getUserName());
+        return new ResponseEntity<User>(this.repository.save(userToUpdate), HttpStatus.CREATED);
     }
 }
