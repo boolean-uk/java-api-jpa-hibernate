@@ -26,12 +26,6 @@ public class UserController {
         return new ResponseEntity<>(this.userRepository.save(user), HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<User> getUserID(@PathVariable int id) {
-        User user = getUserWithNotFound(id);
-        return ResponseEntity.ok(user);
-    }
-
     @DeleteMapping("{id}")
     public ResponseEntity<User> deleteUser(@PathVariable int id) {
         User userToDelete = getUserWithNotFound(id);
@@ -43,10 +37,10 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
         User userToUpdate = getUserWithNotFound(id);
         userToUpdate.setEmail(user.getEmail());
-        userToUpdate.setFirstName(userToUpdate.getFirstName());
-        userToUpdate.setLastName(userToUpdate.getLastName());
-        userToUpdate.setUsername(userToUpdate.getUsername());
-        userToUpdate.setPhone(userToUpdate.getPhone());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setPhone(user.getPhone());
         return new ResponseEntity<>(this.userRepository.save(userToUpdate), HttpStatus.CREATED);
     }
 
