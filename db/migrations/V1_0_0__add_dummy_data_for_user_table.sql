@@ -1,0 +1,27 @@
+INSERT INTO users
+    (email, first_name, last_name, username, phone)
+VALUES
+    ('john@gmail.com', 'John', 'Doe', 'johndoe', '123-456-7890'),
+    ('mary@yahoo.com', 'Mary', 'Smith', 'marysmith', '987-654-3210'),
+    ('david@hotmail.com', 'David', 'Johnson', 'davidj', '555-123-4567'),
+    ('emily@outlook.com', 'Emily', 'Brown', 'emilyb', '999-888-7777'),
+    ('alex@example.com', 'Alex', 'Wilson', 'alexw', '111-222-3333'),
+    ('alice@gmail.com', 'Alice', 'Jones', 'alicej', '444-555-6666'),
+    ('bob@yahoo.com', 'Bob', 'Davis', 'bobd', '777-888-9999'),
+    ('charlie@hotmail.com', 'Charlie', 'Lee', 'charliel', '222-333-4444'),
+    ('emma@outlook.com', 'Emma', 'Martinez', 'emmag', '888-999-0000'),
+    ('frank@example.com', 'Frank', 'Thomas', 'frankt', '123-987-6543'),
+    ('grace@gmail.com', 'Grace', 'Taylor', 'gracet', '789-654-3210'),
+    ('hannah@yahoo.com', 'Hannah', 'White', 'hannahw', '222-444-6666'),
+    ('ian@hotmail.com', 'Ian', 'Anderson', 'iana', '555-789-1234'),
+    ('julia@outlook.com', 'Julia', 'Evans', 'juliae', '777-333-1111'),
+    ('daniel@gmail.com', 'Daniel', 'Wilson', 'danielw', '999-111-3333'),
+    ('olivia@yahoo.com', 'Olivia', 'Harris', 'oliviah', '111-555-9999'),
+    ('jack@hotmail.com', 'Jack', 'Martin', 'jackm', '333-777-4444'),
+    ('ava@outlook.com', 'Ava', 'Thompson', 'avat', '777-111-8888'),
+    ('noah@example.com', 'Noah', 'Clark', 'noahc', '666-222-8888'),
+    ('mia@gmail.com', 'Mia', 'Lewis', 'mial', '222-888-7777'),
+    ('william@yahoo.com', 'William', 'Roberts', 'williamr', '888-666-3333'),
+    ('sophia@hotmail.com', 'Sophia', 'Jackson', 'sophiaj', '555-666-7777'),
+    ('benjamin@outlook.com', 'Benjamin', 'Walker', 'benjaminw', '666-777-8888'),
+    ('charlotte@example.com', 'Charlotte', 'Hill', 'charlotteh', '111-222-3333');
