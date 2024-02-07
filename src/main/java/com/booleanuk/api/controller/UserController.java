@@ -2,14 +2,18 @@ package com.booleanuk.api.controller;
 
 import com.booleanuk.api.model.User;
 import com.booleanuk.api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("users")
 public class UserController {
+    @Autowired
     private final UserRepository repository;
 
     public UserController(UserRepository repository) {
@@ -22,16 +26,42 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public User getById(@PathVariable("id") Integer id) {
-        return this.repository.findById(id).orElseThrow();
+    public ResponseEntity<User> getOne(@PathVariable int id) {
+        return ResponseEntity.ok(getById(id));
     }
 
-    record PostUser(String email, String firstName) {}
+    @PutMapping("{id}")
+    public ResponseEntity<User> update(@PathVariable int id, @RequestBody User user){
+        User toUpdate = getById(id);
 
-    @ResponseStatus(HttpStatus.CREATED)
+        toUpdate.setEmail(user.getEmail());
+        toUpdate.setFirstName(user.getFirstName());
+        toUpdate.setLastName(user.getLastName());
+        toUpdate.setUserName(user.getUserName());
+        toUpdate.setPhone(user.getUserName());
+
+        return new ResponseEntity<User>(repository.save(toUpdate), HttpStatus.CREATED);
+    }
+
+
     @PostMapping
-    public User create(@RequestBody PostUser request) {
-        User user = new User(request.email(), request.firstName());
-        return this.repository.save(user);
+    public ResponseEntity<User> create(@RequestBody User user) {
+        return new ResponseEntity<User>(repository.save(user), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<User> delete(@PathVariable int id){
+        User toDelete = getById(id);
+        repository.delete(toDelete);
+
+        return ResponseEntity.ok(toDelete);
+    }
+
+
+    private User getById(int id){
+        return repository
+                .findById(id)
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
     }
 }
