@@ -47,4 +47,11 @@ public class GameController {
         gameToUpdate.setEarlyAccess(game.isEarlyAccess());
         return new ResponseEntity<Game>(this.repository.save(gameToUpdate), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Game> delete(@PathVariable int id) {
+        Game gameToDelete = this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
+        this.repository.delete(gameToDelete);
+        return ResponseEntity.ok(gameToDelete);
+    }
 }
