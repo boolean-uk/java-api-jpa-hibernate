@@ -1,33 +1,49 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name="email")
     private String email;
+    @Column(name="firstname")
     private String firstName;
+    @Column(name="isActive")
     private Boolean isActive;
+    @Column(name = "Lastname")
+    private String lastname;
+
+    public String getLastName() {
+        return lastname;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastname = lastname;
+    }
 
     public User(Integer id, String email, String firstName, Boolean isActive) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.isActive = isActive;
+        this.lastname=lastname;
     }
 
     public User(String email, String firstName) {
         this.email = email;
         this.firstName = firstName;
         this.isActive = false;
+    }
+
+    public User() {
+
     }
 
     public Integer getId() {
