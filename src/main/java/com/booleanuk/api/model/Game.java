@@ -90,7 +90,7 @@ public class Game {
         this.releaseYear = releaseYear;
     }
 
-    public boolean isEarlyAccess() {
+    public boolean getEarlyAccess() {
         return isEarlyAccess;
     }
 
