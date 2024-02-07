@@ -16,11 +16,8 @@ public class UserController {
 
 
     @Autowired
-    private final UserRepository repository;
+    private UserRepository repository;
 
-    public UserController(UserRepository repository) {
-        this.repository = repository;
-    }
 
     @GetMapping
     public List<User> getAll() {
@@ -29,17 +26,55 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
+        if(checkIfValuesAreInvalid(user)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not create the new User, please check all required fields are correct.");
+        }
         return new ResponseEntity<>(this.repository.save(user), HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable("id") Integer id) {
         User user = this.repository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not Found"));
         return ResponseEntity.ok(user);
     }
 
-    record PostUser(String email, String firstName) {}
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteSubjectById(@PathVariable int id) {
+        User subject = this.repository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No user matching that id were found"));
+        this.repository.delete(subject);
+        return ResponseEntity.ok(subject);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateSubject(@PathVariable int id, @RequestBody User user) {
+        if(checkIfValuesAreInvalid(user)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not create the new User, please check all required fields are correct.");
+        }
+
+        User updatedUser = this.repository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No users matching that id were found"));
+        updatedUser.setEmail(user.getEmail());
+        updatedUser.setPhone(user.getPhone());
+        updatedUser.setFirstName(user.getFirstName());
+        updatedUser.setUsername(user.getUsername());
+        return new ResponseEntity<>(this.repository.save(updatedUser), HttpStatus.CREATED);
+    }
+
+
+
+
+    private boolean checkIfValuesAreInvalid(User user) {
+        if(user.getEmail() == null || user.getFirstName() == null || user.getUsername() == null || user.getPhone() == null) {
+            return true;
+        }
+
+        return false;
+    }
+
+
 
 
 
