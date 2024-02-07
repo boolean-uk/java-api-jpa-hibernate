@@ -46,4 +46,11 @@ public class UserController {
         userToUpdate.setUserName(user.getUserName());
         return new ResponseEntity<User>(this.repository.save(userToUpdate), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> delete(@PathVariable int id) {
+        User userToDelete = this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
+        this.repository.delete(userToDelete);
+        return ResponseEntity.ok(userToDelete);
+    }
 }
