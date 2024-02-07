@@ -1,6 +1,5 @@
 server:
   port: 4000
-
   error:
     include-message: always
     include-binding-errors: always
@@ -9,14 +8,14 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://DATABASE_URL
+    url: jdbc:postgresql://DATABASE_URL:5432/DATABASE_USERNAME
     username: DATABASE_USERNAME
     password: DATABASE_PASSWORD
-    max-active: 3
-    max-idle: 3
+    max-active: 5
+    max-idle: 5
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
