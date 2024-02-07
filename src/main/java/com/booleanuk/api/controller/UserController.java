@@ -21,18 +21,8 @@ public class UserController {
         return ResponseEntity.ok(this.repository.findAll());
     }
 
-    /**
-    @GetMapping("{id}")
-    public User getUserById(@PathVariable("id") Integer id) {
-        return this.repository.findById(id).orElseThrow();
-    }
-
-    record PostUser(String email, String firstName) {}
-    @ResponseStatus(HttpStatus.CREATED)
-     */
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        //User userToBeCreated = new User(user.getEmail(), user.getFirstName(), user);
         return new ResponseEntity<>(this.repository.save(user), HttpStatus.CREATED);
     }
 

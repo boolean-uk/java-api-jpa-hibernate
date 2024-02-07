@@ -32,4 +32,5 @@ public class Game {
 
     @Column(name="is_early_access")
     private boolean isEarlyAccess;
+
 }
