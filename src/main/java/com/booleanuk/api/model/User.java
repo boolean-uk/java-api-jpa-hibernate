@@ -1,33 +1,41 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "email")
     private String email;
+    @Column(name = "first_name")
     private String firstName;
-    private Boolean isActive;
+    @Column(name = "last_name")
+    private String lastName;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
-        this.id = id;
-        this.email = email;
-        this.firstName = firstName;
-        this.isActive = isActive;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "phone")
+    private String phone;
+
+    public User() {
+
     }
 
-    public User(String email, String firstName) {
+    public User(String email, String firstName, String lastName, String username, String phone) {
+        super();
         this.email = email;
         this.firstName = firstName;
-        this.isActive = false;
+        this.lastName = lastName;
+        this.username = username;
+        this.phone = phone;
+
     }
 
     public Integer getId() {
@@ -54,34 +62,40 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(isActive, user.isActive);
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, firstName, isActive);
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", isActive=" + isActive +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }
