@@ -40,9 +40,9 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable int id, @RequestBody User user){
         User userUpdate = this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cant find"));
+        userUpdate.setEmail(user.getEmail());
         userUpdate.setFirstName(user.getFirstName());
         userUpdate.setLastName(user.getLastName());
-        userUpdate.setEmail(user.getEmail());
         userUpdate.setPhone(user.getPhone());
         return new ResponseEntity<User>(this.repository.save(userUpdate), HttpStatus.CREATED);
     }
