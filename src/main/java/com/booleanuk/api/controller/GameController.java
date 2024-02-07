@@ -34,4 +34,17 @@ public class GameController {
     public ResponseEntity<Game> create(@RequestBody Game game) {
         return new ResponseEntity<>(this.repository.save(game), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Game> update(@PathVariable(name = "id") int id, @RequestBody Game game) {
+        Game gameToUpdate = this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
+
+        gameToUpdate.setTitle(game.getTitle());
+        gameToUpdate.setGenre(game.getGenre());
+        gameToUpdate.setPublisher(game.getPublisher());
+        gameToUpdate.setDeveloper(game.getDeveloper());
+        gameToUpdate.setReleaseYear(game.getReleaseYear());
+        gameToUpdate.setEarlyAccess(game.isEarlyAccess());
+        return new ResponseEntity<Game>(this.repository.save(gameToUpdate), HttpStatus.CREATED);
+    }
 }
