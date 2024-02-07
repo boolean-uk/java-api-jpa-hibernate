@@ -1,0 +1,28 @@
+INSERT INTO games
+    (title, genre, publisher, developer, release_year, is_early_access)
+VALUES
+    ('Grand Theft Auto V', 'Action', 'Rockstar Games', 'Rockstar North', 2013, false),
+    ('The Witcher 3: Wild Hunt', 'RPG', 'CD Projekt', 'CD Projekt Red', 2015, false),
+    ('Minecraft', 'Survival', 'Mojang Studios', 'Mojang Studios', 2011, false),
+    ('The Legend of Zelda: Breath of the Wild', 'Action-adventure', 'Nintendo', 'Nintendo EPD', 2017, false),
+    ('Red Dead Redemption 2', 'Action-adventure', 'Rockstar Games', 'Rockstar Studios', 2018, false),
+    ('Fortnite', 'Battle royale', 'Epic Games', 'Epic Games', 2017, false),
+    ('Counter-Strike: Global Offensive', 'First-person shooter', 'Valve Corporation', 'Valve Corporation', 2012, false),
+    ('Among Us', 'Social deduction', 'Innersloth', 'Innersloth', 2018, false),
+    ('League of Legends', 'MOBA', 'Riot Games', 'Riot Games', 2009, false),
+    ('Apex Legends', 'Battle royale', 'Electronic Arts', 'Respawn Entertainment', 2019, false),
+    ('Dota 2', 'MOBA', 'Valve Corporation', 'Valve Corporation', 2013, false),
+    ('Call of Duty: Warzone', 'Battle royale', 'Activision', 'Infinity Ward', 2020, false),
+    ('FIFA 21', 'Sports', 'Electronic Arts', 'EA Vancouver', 2020, false),
+    ('Overwatch', 'First-person shooter', 'Blizzard Entertainment', 'Blizzard Entertainment', 2016, false),
+    ('Cyberpunk 2077', 'Action-adventure', 'CD Projekt', 'CD Projekt Red', 2020, false),
+    ('Rocket League', 'Sports', 'Psyonix', 'Psyonix', 2015, false),
+    ('Genshin Impact', 'Action RPG', 'miHoYo', 'miHoYo', 2020, false),
+    ('Valorant', 'First-person shooter', 'Riot Games', 'Riot Games', 2020, false),
+    ('World of Warcraft', 'MMORPG', 'Blizzard Entertainment', 'Blizzard Entertainment', 2004, false),
+    ('Halo Infinite', 'First-person shooter', 'Microsoft Studios', '343 Industries', 2021, false),
+    ('Animal Crossing: New Horizons', 'Life simulation', 'Nintendo', 'Nintendo EPD', 2020, false),
+    ('Genshin Impact', 'Action RPG', 'miHoYo', 'miHoYo', 2020, false),
+    ('Among Us', 'Social deduction', 'Innersloth', 'Innersloth', 2018, false),
+    ('Fall Guys', 'Platform', 'Devolver Digital', 'Mediatonic', 2020, false),
+    ('The Elder Scrolls V: Skyrim', 'Action RPG', 'Bethesda Softworks', 'Bethesda Game Studios', 2011, false);
