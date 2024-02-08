@@ -47,7 +47,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
         User userToUpdate = findUser(id);
         if(containsNull(user)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not create the new user, please check all required fields are correct.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not update the user, please check all required fields are correct.");
         }
         userToUpdate.setEmail(user.getEmail());
         userToUpdate.setFirstName(user.getFirstName());

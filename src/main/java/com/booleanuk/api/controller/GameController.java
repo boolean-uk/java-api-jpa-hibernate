@@ -48,7 +48,7 @@ public class GameController {
     public ResponseEntity<Game> updateGame(@PathVariable int id, @RequestBody Game game) {
         Game gameToUpdate = findGame(id);
         if(containsNull(game)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not create the new game, please check all required fields are correct.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not update the game, please check all required fields are correct.");
         }
         gameToUpdate.setTitle(game.getTitle());
         gameToUpdate.setGenre(game.getGenre());
