@@ -16,18 +16,21 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "email")
+    @Column
     private String email;
-    @Column(name = "first_name")
+    @Column
     private String firstName;
-    @Column(name = "is_active")
-    private Boolean isActive;
+    @Column
+    private String lastName;
+    @Column
+    private String phone;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
+    public User(Integer id, String email, String firstName, String lastName, String phone) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
-        this.isActive = isActive;
+        this.lastName = lastName;
+        this.phone = phone;
     }
 
     @Override
@@ -35,12 +38,13 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(isActive, user.isActive);
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName)
+                && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, isActive);
+        return Objects.hash(id, email, firstName, lastName, phone);
     }
 
     @Override
@@ -49,7 +53,8 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", isActive=" + isActive +
+                ", lastName=" + lastName + '\n' +
+                ", phone= " + phone +
                 '}';
     }
 }

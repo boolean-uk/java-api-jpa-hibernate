@@ -42,7 +42,8 @@ public class UserController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         updateUser.setEmail(user.getEmail());
         updateUser.setFirstName(user.getFirstName());
-        updateUser.setIsActive(user.getIsActive());
+        updateUser.setLastName(user.getLastName());
+        updateUser.setPhone(user.getPhone());
         return new ResponseEntity<User>(this.repository.save(updateUser),HttpStatus.CREATED);
     }
 
