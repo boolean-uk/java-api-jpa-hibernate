@@ -22,8 +22,8 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<Game> createGame(@RequestBody Game user) {
-        return new ResponseEntity<Game>(this.gameRepository.save(user), HttpStatus.CREATED);
+    public ResponseEntity<Game> createGame(@RequestBody Game game) {
+        return new ResponseEntity<Game>(this.gameRepository.save(game), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
