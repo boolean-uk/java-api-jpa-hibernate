@@ -1,20 +1,20 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name= "email")
     private String email;
+    @Column(name= "first_name")
     private String firstName;
+    @Column(name= "isActive")
     private Boolean isActive;
 
     public User(Integer id, String email, String firstName, Boolean isActive) {
