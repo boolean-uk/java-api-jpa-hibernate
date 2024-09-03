@@ -1,12 +1,13 @@
 package com.booleanuk.api.controller;
 
+import java.util.List;
+
 import com.booleanuk.api.model.User;
 import com.booleanuk.api.model.UserDTO;
 import com.booleanuk.api.repository.UserRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("users")
