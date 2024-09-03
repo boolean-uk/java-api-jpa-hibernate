@@ -15,9 +15,9 @@ public class User {
 
   private String email;
   private String firstName;
-  private boolean isActive;
+  private Boolean isActive;
 
-  public User(Integer id, String email, String firstName, boolean isActive) {
+  public User(Integer id, String email, String firstName, Boolean isActive) {
     this.id = id;
     this.email = email;
     this.firstName = firstName;
@@ -54,11 +54,11 @@ public class User {
     this.firstName = firstName;
   }
 
-  public boolean getActive() {
+  public Boolean getActive() {
     return isActive;
   }
 
-  public void setActive(boolean active) {
+  public void setActive(Boolean active) {
     isActive = active;
   }
 

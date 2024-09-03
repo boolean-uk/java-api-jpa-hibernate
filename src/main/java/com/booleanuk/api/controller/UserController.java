@@ -1,6 +1,7 @@
 package com.booleanuk.api.controller;
 
 import com.booleanuk.api.model.User;
+import com.booleanuk.api.model.UserDTO;
 import com.booleanuk.api.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +27,9 @@ public class UserController {
     return this.repository.findById(id).orElseThrow();
   }
 
-  record PostUser(String email, String firstName) {
-  }
-
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping
-  public User create(@RequestBody PostUser request) {
+  public User create(@RequestBody UserDTO request) {
     User user = new User(request.email(), request.firstName());
     return this.repository.save(user);
   }
