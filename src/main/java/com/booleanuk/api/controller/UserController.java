@@ -10,28 +10,29 @@ import java.util.List;
 @RestController
 @RequestMapping("users")
 public class UserController {
-    private final UserRepository repository;
+  private final UserRepository repository;
 
-    public UserController(UserRepository repository) {
-        this.repository = repository;
-    }
+  public UserController(UserRepository repository) {
+    this.repository = repository;
+  }
 
-    @GetMapping
-    public List<User> getAll() {
-        return this.repository.findAll();
-    }
+  @GetMapping
+  public List<User> getAll() {
+    return this.repository.findAll();
+  }
 
-    @GetMapping("{id}")
-    public User getById(@PathVariable("id") Integer id) {
-        return this.repository.findById(id).orElseThrow();
-    }
+  @GetMapping("{id}")
+  public User getById(@PathVariable("id") Integer id) {
+    return this.repository.findById(id).orElseThrow();
+  }
 
-    record PostUser(String email, String firstName) {}
+  record PostUser(String email, String firstName) {
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public User create(@RequestBody PostUser request) {
-        User user = new User(request.email(), request.firstName());
-        return this.repository.save(user);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping
+  public User create(@RequestBody PostUser request) {
+    User user = new User(request.email(), request.firstName());
+    return this.repository.save(user);
+  }
 }
