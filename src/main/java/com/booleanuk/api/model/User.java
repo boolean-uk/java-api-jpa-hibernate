@@ -6,9 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -38,38 +42,6 @@ public class User {
     this.isActive = false;
   }
 
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public Boolean getActive() {
-    return isActive;
-  }
-
-  public void setActive(Boolean active) {
-    isActive = active;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o)
@@ -77,22 +49,23 @@ public class User {
     if (o == null || getClass() != o.getClass())
       return false;
     User user = (User) o;
-    return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName)
-        && Objects.equals(isActive, user.isActive);
+    return Objects.equals(this.id, user.id) && Objects.equals(this.email, user.email)
+        && Objects.equals(this.firstName, user.firstName)
+        && Objects.equals(this.isActive, user.isActive);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, email, firstName, isActive);
+    return Objects.hash(this.id, this.email, this.firstName, this.isActive);
   }
 
   @Override
   public String toString() {
     return "User{" +
-        "id=" + id +
-        ", email='" + email + '\'' +
-        ", firstName='" + firstName + '\'' +
-        ", isActive=" + isActive +
+        "id=" + this.id +
+        ", email='" + this.email + '\'' +
+        ", firstName='" + this.firstName + '\'' +
+        ", isActive=" + this.isActive +
         '}';
   }
 }

@@ -34,4 +34,26 @@ public class UserController {
     User user = new User(request.email(), request.firstName());
     return this.repository.save(user);
   }
+
+  @ResponseStatus(HttpStatus.OK)
+  @DeleteMapping("{id}")
+  public User delete(@PathVariable("id") Integer id) {
+    User deletedRef = this.repository.getReferenceById(id);
+    User deletedCopy = new User(deletedRef.getId(), deletedRef.getEmail(), deletedRef.getFirstName(),
+        deletedRef.getIsActive());
+    this.repository.deleteById(id);
+
+    return deletedCopy;
+  }
+
+  @ResponseStatus(HttpStatus.CREATED)
+  @PutMapping("{id}")
+  public User put(@PathVariable("id") Integer id, @RequestBody UserDTO request) {
+    User toUpdateRef = this.repository.getReferenceById(id);
+    toUpdateRef.setFirstName(request.firstName());
+    toUpdateRef.setEmail(request.email());
+
+    return new User(toUpdateRef.getId(), toUpdateRef.getEmail(), toUpdateRef.getFirstName(),
+        toUpdateRef.getIsActive());
+  }
 }
