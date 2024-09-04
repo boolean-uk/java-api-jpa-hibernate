@@ -2,6 +2,9 @@ CREATE DATABASE java_api_jpa_hibernate;
 
 \c java_api_jpa_hibernate;
 
+DROP TABLE users;
+DROP TABLE games;
+
 CREATE TABLE users(
   id SERIAL PRIMARY KEY,
   email TEXT,
