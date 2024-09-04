@@ -28,20 +28,26 @@ public class User {
   @Column(name = "first_name")
   private String firstName;
 
-  @Column(name = "is_active")
-  private Boolean isActive;
+  @Column(name = "last_name")
+  private String lastName;
 
-  public User(Integer id, String email, String firstName, Boolean isActive) {
+  @Column(name = "username")
+  private String username;
+
+  @Column(name = "phone")
+  private String phone;
+
+  public User(Integer id, String email, String firstName, String lastName, String username, String phone) {
+    this(email, firstName, lastName, username, phone);
     this.id = id;
-    this.email = email;
-    this.firstName = firstName;
-    this.isActive = isActive;
   }
 
-  public User(String email, String firstName) {
+  public User(String email, String firstName, String lastName, String username, String phone) {
     this.email = email;
     this.firstName = firstName;
-    this.isActive = false;
+    this.lastName = lastName;
+    this.username = username;
+    this.phone = phone;
   }
 
   @Override
@@ -53,12 +59,14 @@ public class User {
     User user = (User) o;
     return Objects.equals(this.id, user.id) && Objects.equals(this.email, user.email)
         && Objects.equals(this.firstName, user.firstName)
-        && Objects.equals(this.isActive, user.isActive);
+        && Objects.equals(this.lastName, user.lastName)
+        && Objects.equals(this.username, user.username)
+        && Objects.equals(this.phone, user.phone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.id, this.email, this.firstName, this.isActive);
+    return Objects.hash(this.id, this.email, this.firstName, this.lastName, this.username, this.phone);
   }
 
   @Override
@@ -67,7 +75,9 @@ public class User {
         "id=" + this.id +
         ", email='" + this.email + '\'' +
         ", firstName='" + this.firstName + '\'' +
-        ", isActive=" + this.isActive +
+        ", lastName='" + this.lastName + '\'' +
+        ", username='" + this.username + '\'' +
+        ", phone='" + this.phone + '\'' +
         '}';
   }
 }

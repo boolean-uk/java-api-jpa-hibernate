@@ -48,7 +48,12 @@ public class Game {
     this.developer = developer;
     this.releaseYear = releaseYear;
     this.isEarlyAccess = isEarlyAccess;
+  }
 
+  public Game(Integer id, String title, String genre, String publisher, String developer, Integer releaseYear,
+      Boolean isEarlyAccess) {
+    this(title, genre, publisher, developer, releaseYear, isEarlyAccess);
+    this.id = id;
   }
 
   @Override
