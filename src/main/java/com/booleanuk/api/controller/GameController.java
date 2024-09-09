@@ -37,7 +37,7 @@ public class GameController {
         gameToUpdate.setPublisher(game.getPublisher());
         gameToUpdate.setDeveloper(game.getDeveloper());
         gameToUpdate.setReleaseYear(game.getReleaseYear());
-        game.setEarlyAccess(game.GetEarlyAccess());
+        gameToUpdate.setEarlyAccess(game.getEarlyAccess());
 
         return new ResponseEntity<Game>(this.gameRepository.save(gameToUpdate), HttpStatus.CREATED);
     }
@@ -49,4 +49,6 @@ public class GameController {
         this.gameRepository.delete(gameToRemove);
         return ResponseEntity.ok(gameToRemove);
     }
+
+
 }

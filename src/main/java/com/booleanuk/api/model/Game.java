@@ -29,7 +29,7 @@ public class Game {
     @Column(name = "is_early_access")
     private boolean isEarlyAccess;
 
-    public Game(int id, String title, String genre, String publisher, String developer, int releaseYear, Boolean isEarlyAccess){
+    public Game(int id, String title, String genre, String publisher, String developer, int releaseYear, boolean isEarlyAccess){
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -91,7 +91,7 @@ public class Game {
         this.releaseYear = releaseYear;
     }
 
-    public boolean GetEarlyAccess() {
+    public boolean getEarlyAccess() {
         return isEarlyAccess;
     }
 
