@@ -1,26 +1,49 @@
+
+
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
+    @Column(name = "is_active")
     private Boolean isActive;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
-        this.id = id;
+    public User(
+            String email,
+            String firstName,
+            String lastName,
+            String username,
+            String phone,
+            Boolean isActive
+    ) {
         this.email = email;
         this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.phone = phone;
         this.isActive = isActive;
     }
 
@@ -29,6 +52,8 @@ public class User {
         this.firstName = firstName;
         this.isActive = false;
     }
+
+    public User() {}
 
     public Integer getId() {
         return id;
@@ -52,6 +77,30 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Boolean getActive() {
@@ -81,6 +130,9 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", phone='" + phone + '\'' +
                 ", isActive=" + isActive +
                 '}';
     }
