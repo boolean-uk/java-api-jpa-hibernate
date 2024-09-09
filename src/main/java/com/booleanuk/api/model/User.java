@@ -1,33 +1,43 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
+    @Column(name = "email_address")
     private String email;
-    private String firstName;
-    private Boolean isActive;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    public User(int id, String email, String firstName, String lastName, String username, String phoneNumber) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
-        this.isActive = isActive;
+        this.lastName = lastName;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
     }
 
-    public User(String email, String firstName) {
-        this.email = email;
-        this.firstName = firstName;
-        this.isActive = false;
+    public User(){
+
     }
 
     public Integer getId() {
@@ -54,12 +64,28 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -67,12 +93,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(isActive, user.isActive);
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(phoneNumber, user.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, isActive);
+        return Objects.hash(id, email, firstName, lastName, username, phoneNumber);
     }
 
     @Override
@@ -81,7 +107,9 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", isActive=" + isActive +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", phone='" + phoneNumber + '\'' +
                 '}';
     }
 }
