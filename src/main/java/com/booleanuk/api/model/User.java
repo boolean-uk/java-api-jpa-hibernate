@@ -1,34 +1,39 @@
 package com.booleanuk.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name="Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     private String email;
+
+
     private String firstName;
-    private Boolean isActive;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
-        this.id = id;
+
+    private String lastName;
+
+
+    private String phone;
+
+    private String username;
+
+    public User(String email, String firstName, String lastName, String phone, String username) {
+
         this.email = email;
         this.firstName = firstName;
-        this.isActive = isActive;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.username=username;
     }
 
-    public User(String email, String firstName) {
-        this.email = email;
-        this.firstName = firstName;
-        this.isActive = false;
-    }
 
     public Integer getId() {
         return id;
@@ -54,14 +59,31 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public String getLastName() {
+        return lastName;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,4 +106,6 @@ public class User {
                 ", isActive=" + isActive +
                 '}';
     }
+
+     */
 }
