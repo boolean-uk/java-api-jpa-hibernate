@@ -1,9 +1,11 @@
 package com.booleanuk.api.controller;
 
+import com.booleanuk.api.model.Game;
 import com.booleanuk.api.model.User;
 import com.booleanuk.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,34 +22,42 @@ public class UserController {
         this.repository = repository;
     }
 
+
     @GetMapping
-    public List<User> getAll() {
+    public List<User> getAllUsers() {
         return this.repository.findAll();
     }
 
     @GetMapping("{id}")
-    public User getById(@PathVariable("id") Integer id) {
-        return this.repository.findById(id).orElseThrow();
+    public User getUserById(@PathVariable("id") Integer id) {
+        return this.repository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "NO users WITH THAT ID FOUND")
+        );
     }
 
-    record PostUser(String email, String firstName) {}
+    //record PostUser(String email, String firstName) {}
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public User create(@RequestBody PostUser request) {
-        User user = new User(request.email(), request.firstName());
-        return this.repository.save(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return new ResponseEntity<User>(this.repository.save(user), HttpStatus.CREATED);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user){
+        User userToUpdate = this.repository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"No users with that ID found")
+        );
+        user.setId(userToUpdate.getId());
+        return new ResponseEntity<>(this.repository.save(user), HttpStatus.CREATED);
+    }
 
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public User update(@PathVariable int id, @RequestBody User user) throws SQLException{
-        User userToUpdate = this.repository.getReferenceById(id);
-        if(userToUpdate == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "NOT FOUND");
-        }
-        return this.repository.save(userToUpdate);
+    @DeleteMapping("{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable int id){
+        User userToDelete = this.repository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"No users with that ID found")
+        );
+        this.repository.delete(userToDelete);
+        return ResponseEntity.ok(userToDelete);
     }
 
 

@@ -13,19 +13,28 @@ public class User {
 
     private String email;
     private String firstName;
-    private Boolean isActive;
+    private String lastName;
+    private String userName;
+    private String phone;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
+    public User(Integer id, String email, String firstName, String lastName, String userName, String phone) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
-        this.isActive = isActive;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.phone = phone;
     }
 
-    public User(String email, String firstName) {
+    public User(String email, String firstName, String lastName, String userName, String phone) {
         this.email = email;
         this.firstName = firstName;
-        this.isActive = false;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.phone = phone;
+    }
+
+    public User() {
     }
 
     public Integer getId() {
@@ -52,14 +61,31 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,4 +108,6 @@ public class User {
                 ", isActive=" + isActive +
                 '}';
     }
+
+     */
 }
