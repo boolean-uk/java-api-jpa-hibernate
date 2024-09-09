@@ -55,6 +55,8 @@ public class User {
         this.isActive = false;
     }
 
+    public User() {}
+
     public Integer getId() {
         return id;
     }
