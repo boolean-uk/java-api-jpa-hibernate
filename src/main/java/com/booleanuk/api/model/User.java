@@ -32,7 +32,6 @@ public class User {
     private Boolean isActive;
 
     public User(
-            Integer id,
             String email,
             String firstName,
             String lastName,
@@ -40,7 +39,6 @@ public class User {
             String phone,
             Boolean isActive
     ) {
-        this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
