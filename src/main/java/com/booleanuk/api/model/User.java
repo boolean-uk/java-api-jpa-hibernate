@@ -1,3 +1,4 @@
+
 package com.booleanuk.api.model;
 
 import jakarta.persistence.Entity;
@@ -15,12 +16,26 @@ public class User {
 
     private String email;
     private String firstName;
+    private String lastName;
+    private String userName;
+    private String phone;
     private Boolean isActive;
 
-    public User(Integer id, String email, String firstName, Boolean isActive) {
+    public User(
+            Integer id,
+            String email,
+            String firstName,
+            String lastName,
+            String userName,
+            String phone,
+            Boolean isActive
+    ) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.phone = phone;
         this.isActive = isActive;
     }
 
