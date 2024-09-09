@@ -113,8 +113,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName=" + lastName + '\'' +
-                ", lastName=" + username + '\'' +
-                ", lastName=" + phone +
+                ", userName=" + username + '\'' +
+                ", phone=" + phone +
                 '}';
     }
 }
