@@ -35,18 +35,5 @@ public class Game {
         this.isEarlyAccess=isEarlyAccess;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(genre, game.genre) && Objects.equals(publisher, game.publisher);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, genre, publisher, developer, releaseYear, isEarlyAccess);
-    }
-
 
 }
