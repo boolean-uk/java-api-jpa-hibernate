@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
-    private final UserRepository repository;
+    private UserRepository repository;
 
     public UserController(UserRepository repository) {
         this.repository = repository;
