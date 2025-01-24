@@ -43,9 +43,11 @@ public class UserController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No user with id")
         );
         userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
         userToUpdate.setEmail(user.getEmail());
-        userToUpdate.setActive(user.getActive());
-        return new ResponseEntity<>(userToUpdate, HttpStatus.CREATED);
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setPhone(user.getPhone());
+        return new ResponseEntity<>(repository.save(userToUpdate), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -54,6 +56,6 @@ public class UserController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No user with id")
         );
         repository.deleteById(id);
-        return new ResponseEntity<>(this.repository.save(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }
